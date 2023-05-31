@@ -45,6 +45,11 @@
         </div>
         <div class="card-body">
           <%= simple_format @event.content %>
+          <% if @event.only_woman == 1 %>
+            <div class="mb-3 rounded-pill bg-info text-light d-inline-flex justify-content-center" style="width: 100px; height: 25px;">
+              <p><%= "女性限定" %></p>
+            </div>
+          <% end %> 
         </div>
       </div>
     </div>
@@ -93,12 +98,14 @@
                               data: { confirm: 'キャンセルします' }
                   %>
                 <% else %>
-                  <%= link_to 'このもくもく会に参加する',
-                              event_attendance_url(@event),
-                              class: 'btn btn-primary',
-                              method: :post,
-                              data: { confirm: '申し込みます' }
-                  %>
+                  <% unless @event.only_woman == 1 && current_user.gender != 'woman' %>
+                    <%= link_to 'このもくもく会に参加する',
+                                event_attendance_url(@event),
+                                class: 'btn btn-primary',
+                                method: :post,
+                                data: { confirm: '申し込みます' }
+                    %>
+                  <% end %>
                 <% end %>
               <% end %>
             <% end %>

@@ -9,6 +9,11 @@
       </h4>
       <p class="card-text"><%= event.content %></p>
       <hr />
+      <% if event.only_woman == 1 %>
+        <div class="mb-3 rounded-pill bg-info text-light d-inline-flex justify-content-center" style="width: 100px; height: 25px;">
+          <p><%= "女性限定" %></p>
+        </div>
+      <% end %>
       <div class="d-flex justify-content-between">
         <div>
           <i class="bi bi-geo-alt"></i>
