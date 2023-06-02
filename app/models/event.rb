@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
+
+  enum only_woman: { false: 0, true: 1 }
+  attribute :only_woman, :integer
   include Notifiable
   belongs_to :prefecture
   belongs_to :user
