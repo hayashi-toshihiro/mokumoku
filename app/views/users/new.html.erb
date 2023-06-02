@@ -25,7 +25,7 @@
             </div>
             <div class='mb-3'>
               <%= f.label :gender %>
-              <%= f.select :gender,[['other', :other],['男性', :man],['女性', :woman]], {}, class: 'form-select' %>
+              <%= f.select :gender,User.genders_i18n.invert.map{|key,value|[key,User.genders[value]]},{}, class: 'form-select' %>
             </div>
             <div class="mb-3">
               <%= f.label :password %>

@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  enum genders: { other: 'other', man: 'man', woman: 'woman' }, _prefix: true
+
   has_many :events, dependent: :destroy
   has_many :event_attendances, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -75,5 +77,17 @@ class User < ApplicationRecord
 
   def allow_liked_event_notification?
     notification_timings.liked_event.present?
+  end
+
+  def other?
+    gender == 'other'
+  end
+
+  def man?
+    gender == 'man'
+  end
+
+  def woman?
+    gender == 'woman'
   end
 end

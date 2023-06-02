@@ -2,7 +2,7 @@
 
 class Event < ApplicationRecord
 
-  enum only_woman: { デフォルト: 0, 女性限定: 1 }
+  enum only_woman: { false: 0, true: 1 }
   attribute :only_woman, :integer
   include Notifiable
   belongs_to :prefecture
